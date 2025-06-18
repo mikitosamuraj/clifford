@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clifford – Music Events</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script defer src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+  <script defer src="app.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Clifford</h1>
+  <div id="authSection">
+    <button id="loginBtn">Sign in with Google</button>
+    <button id="logoutBtn" style="display:none;">Logout</button>
+  </div>
+  <div class="top-bar">
+    <button class="event-button" onclick="toggleForm()">Add Event</button>
+    <div>
+      <strong>Find event:</strong>
+      <div class="filters">
+        <label><input type="checkbox" id="allGenres" checked onchange="toggleAllGenres()"> All genres</label>
+        <label><input type="checkbox" class="genre" value="Jazz" /> Jazz</label>
+        <label><input type="checkbox" class="genre" value="Rock" /> Rock</label>
+        <label><input type="checkbox" class="genre" value="Punk" /> Punk</label>
+        <label><input type="checkbox" class="genre" value="Metal" /> Metal</label>
+        <label><input type="checkbox" class="genre" value="DJ" /> DJ</label>
+        <label><input type="checkbox" class="genre" value="Techno" /> Techno</label>
+        <label><input type="checkbox" class="genre" value="DNB" /> DNB</label>
+        <label><input type="checkbox" class="genre" value="Electronic" /> Electronic</label>
+        <label><input type="checkbox" class="genre" value="Jam Session" /> Jam Session</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="event-form" id="eventForm">
+    <input type="text" id="eventName" placeholder="Event name" required />
+    <input type="datetime-local" id="eventDateTime" required />
+    <input type="text" id="eventLocation" placeholder="Location (e.g. Vienna, Graz)" required />
+    <select id="eventGenre" required>
+      <option value="">Select genre</option>
+      <option value="Jazz">Jazz</option>
+      <option value="Rock">Rock</option>
+      <option value="Punk">Punk</option>
+      <option value="Metal">Metal</option>
+      <option value="DJ">DJ</option>
+      <option value="Techno">Techno</option>
+      <option value="DNB">DNB</option>
+      <option value="Electronic">Electronic</option>
+      <option value="Jam Session">Jam Session</option>
+    </select>
+    <button class="event-button" onclick="addEvent()">Submit</button>
+  </div>
+
+  <div id="map" style="height:300px;margin:1rem 0;"></div>
+  <h3>Recently Added Events:</h3>
+  <div id="eventsList"></div>
+</body>
+</html>
